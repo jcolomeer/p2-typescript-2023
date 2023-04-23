@@ -28,7 +28,7 @@ export const loadFilms = async (n: number) => {
     );
     const { page, results } = (await response.json()) as { page:number, results: any[] };
     for (const {
-      original_title,
+      title,
       original_language,
       overview,
       poster_path,
@@ -36,7 +36,7 @@ export const loadFilms = async (n: number) => {
       vote_average,
       vote_count,
     } of results) {
-      films.push(new Film(original_title, release_date, original_language, overview, `https://image.tmdb.org/t/p/original/${poster_path}`, {average: vote_average, vote_count}));
+      films.push(new Film(title, release_date, original_language, overview, `https://image.tmdb.org/t/p/original/${poster_path}`, {average: vote_average, vote_count}));
     }
   }
   return films;

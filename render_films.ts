@@ -28,16 +28,16 @@ const head = (title: string) => `
 </style>
 </head>
 `;
-const renderFilms = (n: number) => {
+const renderFilms = (films: Array<Film>) => {
   let html = "";
 
-  for (let i = 0; i < n; i++) {
-    html += `
+  for (const film of films) {
+    html +=`
     <div class="film">
-        <img src="https://image.tmdb.org/t/p/original/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg" alt="poster">
+        <img src=${film.poster} alt="poster">
         <div class="info">
-            <span class="title">Lorem ipsum dolor sit</span>
-            <span class="year">2019</span>
+            <span class="title">${film.title}</span>
+            <span class="year">${film.year}</span>
         </div>
     </div>         
     `;
@@ -45,13 +45,13 @@ const renderFilms = (n: number) => {
   return html;
 };
 
-export const render = (n: number) => {
+export const render = (films: Array<Film>) => {
   return `<!DOCTYPE html>
-<hmtl lang="en">
+<html lang="en">
      ${head("film list")}
      <body>
         <div class="wrapper">
-     ${renderFilms(n)}
+     ${renderFilms(films)}
         </div>
      </body>
     </html>

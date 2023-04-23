@@ -6,11 +6,12 @@
 // const html = render(users);
 // await writeFile('users.html', html);
 
-import { writeFile, writeFileSync } from "fs";
+import { writeFile } from "fs/promises";
 import { loadFilms } from "./films.js";
 import { render } from "./render_films.js";
 
 
-const films = await loadFilms(35);
-const html = render(20);
-writeFileSync("film_list.html", html);
+const films = await loadFilms(50);
+const html = render(films);
+writeFile("film_list.html", html);
+
