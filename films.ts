@@ -36,7 +36,8 @@ export const loadFilms = async (n: number) => {
       vote_average,
       vote_count,
     } of results) {
-      films.push(new Film(title, release_date, original_language, overview, `https://image.tmdb.org/t/p/original/${poster_path}`, {average: vote_average, vote_count}));
+      let date = `${release_date.substring(8, 2)}/${release_date.substring(5, 2)}/${release_date.substring(0, 4)}`;
+      films.push(new Film(title, date, original_language, overview, `https://image.tmdb.org/t/p/original/${poster_path}`, {average: vote_average, vote_count}));
     }
   }
   return films;
