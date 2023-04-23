@@ -10,5 +10,5 @@ for (const film of films){
     i++;
 }
 const html = render(films);
-writeFile("film_list.html", html);
+writeFile("index.html", html);
 
