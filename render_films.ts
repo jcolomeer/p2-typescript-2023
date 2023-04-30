@@ -31,13 +31,13 @@ const head = (title: string) => `
 
 const renderFilms = (films: Array<Film>) => {
   let html = "";
-  let i=1;  
+  let i = 1;
   for (const film of films) {
-    html +=`
+    html += `
     <div class="film">
         <img src=${film.poster} alt="poster">
         <div class="info">
-            <a href="/film${i}.html">${film.title}</a>
+            <a href="/individual-files/film${i}.html">${film.title}</a>
             <span class="year">${film.year}</span>
         </div>
     </div>         
@@ -59,7 +59,6 @@ export const render = (films: Array<Film>) => {
     </html>
     `;
 };
-
 
 const headIndividual = (title: string) => `
 <head>
@@ -104,7 +103,7 @@ img{
 `;
 
 export const renderIndividual = (film: Film) => {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
      ${headIndividual(film.title)}
      <body>
@@ -127,6 +126,4 @@ export const renderIndividual = (film: Film) => {
      </body>
     </html>
     `;
-
-
-}
+};
