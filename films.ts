@@ -15,7 +15,7 @@ export class Film {
   ) {}
 
   get year() {
-    return this.release_date.substring(0, 4);
+    return this.release_date.substring(6, 10);
   }
 }
 
@@ -24,9 +24,14 @@ export const loadFilms = async (n: number) => {
   const films: Array<Film> = [];
   for (let i = 0; i < pages; i++) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=cd8e138e9fa603fa5424ad61b62d2d66&page=${i+1}`
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=cd8e138e9fa603fa5424ad61b62d2d66&page=${
+        i + 1
+      }`
     );
-    const { page, results } = (await response.json()) as { page:number, results: any[] };
+    const { page, results } = (await response.json()) as {
+      page: number;
+      results: any[];
+    };
     for (const {
       title,
       original_language,
@@ -36,8 +41,20 @@ export const loadFilms = async (n: number) => {
       vote_average,
       vote_count,
     } of results) {
-      let date = `${release_date.substring(8, 2)}/${release_date.substring(5, 2)}/${release_date.substring(0, 4)}`;
-      films.push(new Film(title, date, original_language, overview, `https://image.tmdb.org/t/p/original/${poster_path}`, {average: vote_average, vote_count}));
+      let date = `${release_date.substring(8, 10)}/${release_date.substring(
+        5,
+        7
+      )}/${release_date.substring(0, 4)}`;
+      films.push(
+        new Film(
+          title,
+          date,
+          original_language,
+          overview,
+          `https://image.tmdb.org/t/p/w300/${poster_path}`,
+          { average: vote_average, vote_count }
+        )
+      );
     }
   }
   return films;
